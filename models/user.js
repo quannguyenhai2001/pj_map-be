@@ -3,23 +3,9 @@ const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
-    firstname: {
+    username: {
         type: String,
         required: true,
-    },
-    lastname: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    mobile: {
-        type: String,
-        required: true,
-        unique: true,
     },
     password: {
         type: String,
@@ -29,24 +15,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         default: 'user',
     },
-    address: [{ type: mongoose.Types.ObjectId, ref: 'Address' }],
-    wishlist: [{ type: mongoose.Types.ObjectId, ref: 'Product' }],
-    isBlocked: {
-        type: Boolean,
-        default: false
-    },
     refreshToken: {
         type: String,
     },
-    passwordChangedAt: {
-        type: String
-    },
-    passwordResetToken: {
-        type: String
-    },
-    passwordResetExpires: {
-        type: String
-    }
+
 }, {
     timestamps: true
 });
