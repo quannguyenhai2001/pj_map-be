@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
-    username: {
+    email: {
         type: String,
         required: true,
     },
@@ -15,10 +15,6 @@ var userSchema = new mongoose.Schema({
         type: String,
         default: 'user',
     },
-    refreshToken: {
-        type: String,
-    },
-
 }, {
     timestamps: true
 });
