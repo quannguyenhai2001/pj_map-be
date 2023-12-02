@@ -18,7 +18,6 @@ const register = asyncHandler(async (req, res) => {
     else {
         console.log(req.body)
         const newUser = await User.create(req.body)
-        console.log("fgf")
         return res.status(200).json({
             success: newUser ? true : false,
             mes: newUser ? 'Register is successfully. Please go login~' : 'Something went wrong'

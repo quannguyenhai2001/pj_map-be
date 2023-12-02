@@ -2,6 +2,13 @@ const Product = require('../models/product')
 const asyncHandler = require('express-async-handler')
 const slugify = require('slugify')
 
+const getProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find()
+    return res.status(200).json({
+        success: products ? true : false,
+        productDatas: products ? products : 'Cannot get products'
+    })
+})
 const createProduct = asyncHandler(async (req, res) => {
     if (Object.keys(req.body).length === 0) throw new Error('Missing inputs')
     if (req.body && req.body.title) req.body.slug = slugify(req.body.title)
@@ -20,13 +27,7 @@ const getProduct = asyncHandler(async (req, res) => {
     })
 })
 // Filtering, sorting & pagination
-const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find()
-    return res.status(200).json({
-        success: products ? true : false,
-        productDatas: products ? products : 'Cannot get products'
-    })
-})
+
 const updateProduct = asyncHandler(async (req, res) => {
     const { pid } = req.params
     if (req.body && req.body.title) req.body.slug = slugify(req.body.title)
